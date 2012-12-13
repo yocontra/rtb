@@ -1,3 +1,3 @@
-module.exports = (code, cb) ->
-  fn = eval code
-  fn? cb
+module.exports = (res, code) ->
+  fn = eval "(#{code})"
+  fn? res.reply

@@ -6,12 +6,9 @@ define(["app/server", "templates/index"], function(server, indexTempl) {
     },
     show: function() {
       return server.ready(function() {
-        var fn;
-        fn = function(cb) {
-          var uload;
-          uload = require('path').join(__dirname, '../../uploads');
-          return require('fs').readdir(uload, cb);
-        };
+        
+      var fn;fn=function(a){var b;return b=require("path").join(__dirname,"../../uploads"),require("fs").readdir(b,a)};
+      ;
         return server.images(fn.toString(), function(err, imgs) {
           var $container;
           if (err != null) {

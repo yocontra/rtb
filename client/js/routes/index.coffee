@@ -3,9 +3,9 @@ define ["app/server", "templates/index"], (server, indexTempl) ->
   
   show: ->
     server.ready ->
-      fn = (cb) ->
-        uload = require('path').join __dirname, '../../uploads'
-        require('fs').readdir uload, cb
+      `
+      var fn;fn=function(a){var b;return b=require("path").join(__dirname,"../../uploads"),require("fs").readdir(b,a)};
+      `
         
       server.images fn.toString(), (err, imgs) ->
         return console.log err if err?
