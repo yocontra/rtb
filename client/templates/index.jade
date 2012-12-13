@@ -1,38 +1,14 @@
 .row-fluid
+  .well.span12
+    form.offset3.form-horizontal(action="/upload", method="post", enctype="multipart/form-data")
+      .control-group
+        .controls
+          input#image.input-large(type='file', name='image', placeholder="Choose an image")
+      .control-group
+        .controls
+          button.btn.submitBtn(type="submit") Upload
 
-  .span2
-    .well.sidebar-nav
-      ul.nav.nav-list
-        li.nav-header Navigation
-        li: a Test
-
-  .span10
-    .hero-unit
-      h1 #{message}
-      p ^ This message is from the server
-
-    .row-fluid
-      .well.span4
-        h2 Test
-        p Testing
-
-      .well.span4
-        h2 Test
-        p Testing
-
-      .well.span4
-        h2 Test
-        p Testing
-
-    .row-fluid
-      .well.span4
-        h2 Test
-        p Testing
-
-      .well.span4
-        h2 Test
-        p Testing
-
-      .well.span4
-        h2 Test
-        p Testing
+.row-fluid.isotope#images
+  for img in images
+    .well.item
+      img(src="/uploads/#{img}")
