@@ -2,7 +2,7 @@ express = require 'express'
 http = require 'http'
 Vein = require 'vein'
 {join} = require 'path'
-{rename} = require 'fs'
+{createReadStream, createWriteStream} = require 'fs'
 config = require './config'
 
 uloads = join __dirname, '../uploads'
@@ -16,8 +16,11 @@ app.use '/uploads', express.static uloads
 
 app.post '/upload', (req, res, next) ->
   nu = join uloads, req.files.image.name
-  rename req.files.image.path, nu, (err) ->
-    return next err if err?
+
+  int = createReadStream req.files.image.path
+  int.pipe createWriteStream nu
+  int.on 'error', next
+  int.on 'end', ->
     res.redirect '/'
 
 
